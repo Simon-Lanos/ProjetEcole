@@ -60,7 +60,6 @@ if (isset($_POST['formRegister'])) {
             echo "<p>Problème a l'inscription</p>";
         }
         mysqli_close($connection);
-        die('yolo');
     }
 } else
     include "formRegister.php";
