@@ -60,9 +60,10 @@ function sqlCommit($request)
 /** lance une requête d'extraction SQL
  * TODO bouger ce code dans sa propre fonction sql
  * @param  string $request
+ * @param bool $assoc optional
  * @return mixed
  */
-function sqlFetch($request)
+function sqlFetch($request, $assoc = true)
 {
     //Etablie la connection avec la base
     $connection = mysqli_connect("localhost","root","", "turtuledb");
@@ -72,7 +73,13 @@ function sqlFetch($request)
 
     try
     {
-        $result = mysqli_fetch_assoc(mysqli_query($connection, $request));
+        if ($assoc)
+        {
+            $result = mysqli_fetch_assoc(mysqli_query($connection, $request));
+        }
+        else {
+            $result = mysqli_query($connection, $request);
+        }
     }
     catch (Exception $exception)
     {
