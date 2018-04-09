@@ -1,0 +1,23 @@
+body::after {
+  content: "";
+  display: table;
+  clear: both; }
+
+div.nav-head-triangle {
+  height: 100px;
+  overflow: hidden;
+  position: relative; }
+
+.nav-head-triangle:before {
+  content: "";
+  height: 100px;
+  width: 100px;
+  background: #ff53ed;
+  transform: rotate(45deg);
+  position: absolute;
+  left: -70px; }
+
+body {
+  background: #0F0; }
+
+/*# sourceMappingURL=yolo.css.map */

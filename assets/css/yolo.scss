@@ -1,0 +1,45 @@
+$color1: #00F;
+$color2: #0F0;
+$color3: #F00;
+
+%clearfix::after
+{
+    content: "";
+    display: table;
+    clear: both;
+
+}
+
+@mixin triangle($taille)
+{
+  height: $taille;
+  overflow: hidden;
+  position: relative;
+}
+
+@mixin triangleBefore($taille, $color)
+{
+  content: "";
+  height: $taille;
+  width: $taille;
+  background: $color;
+  transform: rotate(45deg);
+  position: absolute;
+  left: ($taille/-2)-(20/100*$taille);
+}
+
+div.nav-head-triangle
+{
+ @include triangle(100px)
+}
+
+.nav-head-triangle:before
+{
+  @include triangleBefore(100px, #ff53ed)
+}
+
+body
+{
+  background: $color2;
+  @extend %clearfix;
+}
