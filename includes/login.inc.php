@@ -31,13 +31,21 @@ if (isset($_POST['formLogin'])) {
         include "formLogin.php";
     }
     else {
-        $password = sha1($password);
-        $requete = "SELECT * 
+        $requete = "SELECT password 
                     FROM users
-                    WHERE mail='$mail' AND password='$password'";
+                    WHERE mail='$mail' 
+        ";
 
-        $result = sqlFetch($requete , false);
-        if (mysqli_num_rows($result) == 0 ) {
+        //Test le couple mail/password
+        $dbPassword = sqlFetch($requete , false);
+        if (mysqli_num_rows($dbPassword) == 0 )
+        {
+            include "formLogin.php";
+            echo "<p>L'adresse ou le mdp n'est pas correcte, êtes vous <a href='./index.php?page=register'>inscript</a> ?</p>";
+        }
+        $login = password_verify($password, $dbPassword);
+        if (!$login)
+        {
             include "formLogin.php";
             echo "<p>L'adresse ou le mdp n'est pas correcte, êtes vous <a href='./index.php?page=register'>inscript</a> ?</p>";
         }

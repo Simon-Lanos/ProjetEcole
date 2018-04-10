@@ -48,9 +48,9 @@ if (isset($_POST['formRegister'])) {
             die("Erreur SQL" . mysqli_connect_errno() . " : " . mysqli_connect_error() );
         }
         else {
-            $password = sha1($password);
+            $hpassword = password_hash($password);
             $requete = "INSERT INTO users (idUser, lastName, firstName, mail, password, rolesUser)
-                        VALUES (NULL, '$name', '$firstName', '$mail', '$password', 2)";
+                        VALUES (NULL, '$name', '$firstName', '$mail', '$hpassword', 2)";
         }
 
         if ( mysqli_query($connection, $requete)) {
