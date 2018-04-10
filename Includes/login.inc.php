@@ -42,7 +42,6 @@ if (isset($_POST['formLogin'])) {
             echo "<p>L'adresse ou le mdp n'est pas correcte, êtes vous <a href='./index.php?page=register'>inscript</a> ?</p>";
         }
         $dbPassword = sqlFetch($requete);
-        sqlDebug($dbPassword);
         $login = password_verify($password, $dbPassword['password']);
 
         if (!$login) {

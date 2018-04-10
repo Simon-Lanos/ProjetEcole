@@ -1,11 +1,11 @@
 <form method="post" action="#">
     <fieldset>
         <div>
-            <label for="name">Prénom : </label>
+            <label for="name">Nom : </label>
             <input type="text" name="name" value="<?php $name?>"/>
         </div>
         <div>
-            <label for="firstName">Nom : </label>
+            <label for="firstName">Prénom : </label>
             <input type="text" name="firstName" value="<?php $firstName?>"/>
         </div>
         <div>
