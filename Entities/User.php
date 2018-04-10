@@ -104,6 +104,4 @@ class User
     {
         $this->picture = $picture;
     }
-
-
 }

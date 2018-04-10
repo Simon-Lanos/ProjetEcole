@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once("./functions/callPage.php");
-include_once("./functions/getPage.php");
+include_once("./Functions/callPage.php");
+include_once("./Functions/getPage.php");
 ?>
 
     <!DOCTYPE html>
@@ -19,11 +19,11 @@ include_once("./functions/getPage.php");
     </head>
     <body>
     <?php
-    include "./includes/header.php";
+    include "./Includes/header.php";
 
     callPage();
 
-    include "./includes/footer.php";
+    include "./Includes/footer.php";
     ?>
     </body>
     </html>
