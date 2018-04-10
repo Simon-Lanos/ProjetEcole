@@ -2,7 +2,8 @@
 /*
  *@return string
  */
-function getPage() {
+function getPage()
+{
     if (isset($_GET['page'])) {
         $page = $_GET['page'];
     } else
@@ -19,7 +20,7 @@ function getPage() {
 function sqlDebug(array $result)
 {
     $return = gettype($result);
-    foreach ($result as $key=>$rows) {
+    foreach ($result as $key => $rows) {
         $return .= (' <br> [" ' . $key . '"]  => ');
         $return .= ('(' . gettype($rows) . ') : ');
         $return .= ('"' . $result[$key] . '"');
@@ -34,21 +35,18 @@ function sqlDebug(array $result)
  * @param  string $request
  * @return bool
  */
-function sqlCommit($request)
+function sqlInsert($request)
 {
     //Etablie la connection avec la base
-    $connection = mysqli_connect("localhost","root","", "turtuledb");
+    $connection = mysqli_connect("localhost", "root", "", "turtuledb");
     if (!$connection) {
-        return ("Erreur SQL" . mysqli_connect_errno() . " : " . mysqli_connect_error() );
+        return ("Erreur SQL" . mysqli_connect_errno() . " : " . mysqli_connect_error());
     }
 
-    try
-    {
+    try {
         mysqli_query($connection, $request);
         $result = true;
-    }
-    catch (Exception $exception)
-    {
+    } catch (Exception $exception) {
         $result = false;
         throw new $exception;
     }
@@ -66,25 +64,20 @@ function sqlCommit($request)
 function sqlFetch($request, $assoc = true)
 {
     //Etablie la connection avec la base
-    $connection = mysqli_connect("localhost","root","", "turtuledb");
+    $connection = mysqli_connect("localhost", "root", "", "turtuledb");
     if (!$connection) {
-        return ("Erreur SQL" . mysqli_connect_errno() . " : " . mysqli_connect_error() );
+        return ("Erreur SQL" . mysqli_connect_errno() . " : " . mysqli_connect_error());
     }
 
-    try
-    {
-        if ($assoc)
-        {
+    try {
+        if ($assoc) {
             $result = mysqli_fetch_assoc(mysqli_query($connection, $request));
-        }
-        else {
+        } else {
             $result = mysqli_query($connection, $request);
         }
-    }
-    catch (Exception $exception)
-    {
+    } catch (Exception $exception) {
         $result = false;
-        throw new $exception;
+        die($exception);
     }
 
     mysqli_close($connection);

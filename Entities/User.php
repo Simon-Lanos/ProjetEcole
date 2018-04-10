@@ -1,12 +1,13 @@
 <?php
+
 class User
 {
-   private $name;
-   private $lastName;
-   private $mail;
-   private $password;
-   private $roleUser;
-   private $picture;
+    private $name;
+    private $lastName;
+    private $mail;
+    private $password;
+    private $roleUser;
+    private $picture;
 
     /**
      * @return mixed
@@ -19,7 +20,7 @@ class User
     /**
      * @return mixed
      */
-    public function getlastName()
+    public function getLastName()
     {
         return $this->lastName;
     }
@@ -103,6 +104,6 @@ class User
     {
         $this->picture = $picture;
     }
-   
-   
+
+
 }

@@ -29,27 +29,26 @@ if (isset($_POST['formLogin'])) {
 
         echo $message;
         include "formLogin.php";
-    }
-    else {
-        $requete = "SELECT password 
+    } else {
+        $requete = "SELECT `password` 
                     FROM users
                     WHERE mail='$mail' 
         ";
 
         //Test le couple mail/password
-        $dbPassword = sqlFetch($requete , false);
-        if (mysqli_num_rows($dbPassword) == 0 )
-        {
+        $result = sqlFetch($requete, false);
+        if (mysqli_num_rows($result) == 0) {
             include "formLogin.php";
             echo "<p>L'adresse ou le mdp n'est pas correcte, êtes vous <a href='./index.php?page=register'>inscript</a> ?</p>";
         }
-        $login = password_verify($password, $dbPassword);
-        if (!$login)
-        {
+        $dbPassword = sqlFetch($requete);
+        sqlDebug($dbPassword);
+        $login = password_verify($password, $dbPassword['password']);
+
+        if (!$login) {
             include "formLogin.php";
             echo "<p>L'adresse ou le mdp n'est pas correcte, êtes vous <a href='./index.php?page=register'>inscript</a> ?</p>";
-        }
-        else {
+        } else {
             $requete = "SELECT firstName
                         FROM users
                         WHERE mail='$mail'";
@@ -59,6 +58,5 @@ if (isset($_POST['formLogin'])) {
             $_SESSION['user'] = $result;
         }
     }
-}
-else
-include "formLogin.php";
+} else
+    include "formLogin.php";

@@ -1,10 +1,10 @@
 <?php
 
-    $requete = "SELECT * 
+$requete = "SELECT * 
       FROM users;
       ";
-    
-    $result = sqlFetch($requete);
-    sqlDebug($result);
-    
+
+$result = sqlFetch($requete);
+sqlDebug($result);
+
 include "anime.php";

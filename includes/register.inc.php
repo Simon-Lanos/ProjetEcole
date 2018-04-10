@@ -43,23 +43,18 @@ if (isset($_POST['formRegister'])) {
         echo $message;
         include "formRegister.php";
     } else {
-        $connection = mysqli_connect("localhost","root","", "turtuledb");
-        if (!$connection) {
-            die("Erreur SQL" . mysqli_connect_errno() . " : " . mysqli_connect_error() );
-        }
-        else {
-            $hpassword = password_hash($password);
-            $requete = "INSERT INTO users (idUser, lastName, firstName, mail, password, rolesUser)
-                        VALUES (NULL, '$name', '$firstName', '$mail', '$hpassword', 2)";
-        }
 
-        if ( mysqli_query($connection, $requete)) {
-            echo "<p>Inscrition ok</p>";
-        }
-        else {
-            echo "<p>Problème a l'inscription</p>";
-        }
-        mysqli_close($connection);
+        $hpassword = password_hash($password, PASSWORD_DEFAULT);
+        $requete = "INSERT INTO users (idUser, lastName, firstName, mail, password, rolesUser)
+                    VALUES (NULL, '$name', '$firstName', '$mail', '$hpassword', 2)";
+
+        $success = sqlInsert($requete);
+    }
+
+    if ($success) {
+        echo "<p>Inscrition ok</p>";
+    } else {
+        echo "<p>Problème a l'inscription</p>";
     }
 } else
     include "formRegister.php";
