@@ -2,6 +2,8 @@
 session_start();
 include_once("./Functions/callPage.php");
 include_once("./Functions/getPage.php");
+include_once("./Entities/Abstrct.php");
+include_once("./Entities/User.php");
 ?>
 
     <!DOCTYPE html>

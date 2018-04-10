@@ -1,13 +1,22 @@
 <?php
 
-class User
+final class User extends Abstrct
 {
-    private $name;
-    private $lastName;
-    private $mail;
-    private $password;
-    private $roleUser;
-    private $picture;
+    protected $idUser;
+    protected $name;
+    protected $lastName;
+    protected $mail;
+    protected $password;
+    protected $roleUser;
+    protected $picture;
+
+    /**
+     * @return mixed
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
 
     /**
      * @return mixed
@@ -58,6 +67,14 @@ class User
     }
 
     /**
+     * @param mixed $idUser
+     */
+    public function setIdUser($idUser)
+    {
+        $this->idUser = $idUser;
+    }
+
+    /**
      * @param mixed $name
      */
     public function setName($name)
@@ -68,7 +85,7 @@ class User
     /**
      * @param mixed $lastName
      */
-    public function setlastName($lastName)
+    public function setLastName($lastName)
     {
         $this->lastName = $lastName;
     }

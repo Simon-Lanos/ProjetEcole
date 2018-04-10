@@ -24,6 +24,11 @@ if (isset($_POST['formRegister'])) {
     } else
         $password = "";
 
+    if (isset($_FILES['picture']) && $_FILES['picture'] != null) {
+        $picture = $_FILES['picture'];
+    } else
+        $picture = "";
+
     $erreur = array();
 
     if ($name == "") array_push($erreur, "Veuillez saisir un prénom");

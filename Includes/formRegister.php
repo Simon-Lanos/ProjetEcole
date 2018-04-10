@@ -17,6 +17,10 @@
             <input type="password" name="password" value="<?php $password?>"/>
         </div>
         <div>
+            <label for="picture">Votre Avatar : </label>
+            <input type="file" value="picture"/>
+        </div>
+        <div>
             <input type="reset" value="Effacer"/>
             <input type="submit" value="Envoyer" name="formRegister" />
         </div>
