@@ -61,11 +61,10 @@ function calculerInterer() {
             break;
         }
     }
-
-    //le calcul me semble buger
+    
     let numerateur = (formData[0] * formData[2]/12);
 
-    let denominateur = Math.pow((1-(1+formData[2]/12)),-(formData[1]));
+    let denominateur = 1 - Math.pow(1 + formData[2] / 12, -(formData[1]));
 
     let mensualiter = numerateur/denominateur;
     alert(mensualiter);
