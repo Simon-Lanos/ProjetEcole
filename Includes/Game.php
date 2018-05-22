@@ -12,3 +12,22 @@
     </script>
 </div>-->
 <script src="./assets/js/script.js" type="text/javascript"></script>
+
+<form action="#" method="post" id="form-interer">
+    <div>
+        <label for="ammount">Montant emprunté : </label>
+        <input type="number" name="ammount">
+        <span>€</span>
+    </div>
+    <div>
+        <label for="duration">Durée de l'emprunté : </label>
+        <input type="text" name="duration">
+    </div>
+    <div>
+        <label for="taux">Taux D'intérêt : </label>
+        <input type="text" name="taux">
+    </div>
+    <div>
+        <input type="button" onclick="calculerInterer()">
+    </div>
+</form>
