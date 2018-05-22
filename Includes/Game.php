@@ -1,6 +1,6 @@
 <h1>Game lol</h1>
-<script src="./assets/js/game.js" type="text/javascript"></script>
-<canvas id="gc" width="400" height="400"></canvas>
+<!--<script src="./assets/js/game.js" type="text/javascript"></script>-->
+<!--<canvas id="gc" width="400" height="400"></canvas>-->
 <!--<div>
     <script
             src="https://code.jquery.com/jquery-3.3.1.js"
@@ -11,3 +11,4 @@
         document.getElementsByTagName('body')
     </script>
 </div>-->
+<script src="./assets/js/script.js" type="text/javascript"></script>

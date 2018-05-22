@@ -29,6 +29,9 @@ if (isset($_POST['formRegister'])) {
     } else
         $picture = "";
 
+    var_dump($_FILES);
+    die('yolo');
+
     $erreur = array();
 
     if ($name == "") array_push($erreur, "Veuillez saisir un prénom");

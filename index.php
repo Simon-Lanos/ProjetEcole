@@ -2,7 +2,7 @@
 session_start();
 include_once("./Functions/callPage.php");
 include_once("./Functions/getPage.php");
-include_once("./Entities/Abstrct.php");
+include_once("./Entities/Abstracte.php");
 include_once("./Entities/User.php");
 ?>
 
@@ -15,7 +15,7 @@ include_once("./Entities/User.php");
         <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
         <title>
             <?php
-            echo getPage() . " page";
+                echo getPage() . " page";
             ?>
         </title>
     </head>

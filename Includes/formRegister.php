@@ -1,4 +1,4 @@
-<form method="post" action="#">
+<form method="post" action="#" enctype="multipart/form-data">
     <fieldset>
         <div>
             <label for="name">Nom : </label>
@@ -18,7 +18,7 @@
         </div>
         <div>
             <label for="picture">Votre Avatar : </label>
-            <input type="file" value="picture"/>
+            <input type="file" name="picture"/>
         </div>
         <div>
             <input type="reset" value="Effacer"/>

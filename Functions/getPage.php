@@ -83,3 +83,13 @@ function sqlFetch($request, $assoc = true)
     mysqli_close($connection);
     return $result;
 }
+
+function loadArticle($file,array $data) {
+    $fullpath = './Includes/Templates/'.$file.'.php';
+    $article = file_get_contents($fullpath);
+
+    foreach ($data as $key => $value) {
+        $article = str_replace('['.$key.']', $value, $article);
+    }
+    return $article;
+}

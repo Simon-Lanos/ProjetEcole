@@ -11,7 +11,7 @@
             Nam pulvinar turpis quis lorem blandit, ac tincidunt enim dapibus. Ut sagittis porta sagittis. Morbi id mauris auctor, varius nibh at, pharetra nulla.
             Duis hendrerit pellentesque felis a interdum.
         </p>
-        <button>Yolo !</button>
+        <button class="art-button">Yolo !</button>
          <!--
             <div class="inbl">
                 <span>
