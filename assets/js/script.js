@@ -61,7 +61,8 @@ function calculerInterer() {
             break;
         }
     }
-    
+    formData[2] = formData[2]/100 ;
+
     let numerateur = (formData[0] * formData[2]/12);
 
     let denominateur = 1 - Math.pow(1 + formData[2] / 12, -(formData[1]));
