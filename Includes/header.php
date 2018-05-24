@@ -12,14 +12,15 @@
     <?php
     if (isset($_SESSION['user'])) {
 
-        $nom = $_SESSION['user']['firstName'];
-
-        echo "<p>Bonjour " . $nom . " !</p>";
-        echo "<form method='post' action='#'><input type='submit' value='LogOut' name='logOut'/></form>";
-
         if (isset($_POST['logOut'])) {
             unset($_SESSION['user']);
             echo 'Vous êtes actuellement déconectés';
+        }
+        else {
+            $nom = $_SESSION['user']['firstName'];
+
+            echo "<p>Bonjour " . $nom . " !</p>";
+            echo "<form method='post' action='#'><input type='submit' value='LogOut' name='logOut'/></form>";
         }
     }
     else {

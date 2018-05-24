@@ -2,8 +2,21 @@
 session_start();
 include_once("./Functions/callPage.php");
 include_once("./Functions/getPage.php");
-include_once("./Entities/Abstracte.php");
 include_once("./Entities/User.php");
+
+if (isset($_GET['ajax'])) {
+    header("Content-Type: text/plain");
+    $var1 = isset($_GET['param1']) ? $_GET['param1'] : "";
+    $var2 = isset($_GET['param2']) ? $_GET['param2'] : "";
+
+    if ($var1 !== "" && $var2 !== "") {
+        echo "youpi";
+        exit();
+    }
+    else {
+        echo "Boulet";
+    }
+}
 ?>
 
     <!DOCTYPE html>

@@ -30,7 +30,7 @@ function tamere() {
 }
 //tamere();
 
-var superVariable = {}; // "simule" des namespaces
+let superVariable = {}; // "simule" des namespaces
 superVariable.toto = {
     'taille' : 30
 };
@@ -38,7 +38,7 @@ superVariable.toto = {
 function Car(modele) {
     this.model = modele;
 }
-var tuning = new Car(206);
+let tuning = new Car(206);
 Car.prototype.demarrer = function () {
     alert("Ma " + this.model + " fait Vroum !")
 };
@@ -56,7 +56,7 @@ function calculerInterer() {
     for (let i = 0; i < form.length; i++) {
         let oldArray = formData.length;
         let newArray = formData.push(form.elements[i].value);
-        //teste si le tableau a
+        //teste si le tableau a changer pour couper la boucle
         if (newArray === oldArray) {
             break;
         }
