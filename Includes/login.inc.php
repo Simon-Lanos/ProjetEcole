@@ -36,7 +36,7 @@ if (isset($_POST['formLogin'])) {
         ";
 
         //Test le couple mail/password
-        $result = sqlFetch($requete, false);
+        $result = sqlFetch($requete, FETCH_MODE_NO_ASSOC);
         if (mysqli_num_rows($result) == 0) {
             include "formLogin.php";
             echo "<p>L'adresse ou le mdp n'est pas correcte, êtes vous <a href='./index.php?page=register'>inscript</a> ?</p>";
@@ -48,13 +48,14 @@ if (isset($_POST['formLogin'])) {
             include "formLogin.php";
             echo "<p>L'adresse ou le mdp n'est pas correcte, êtes vous <a href='./index.php?page=register'>inscript</a> ?</p>";
         } else {
-            $requete = "SELECT firstName
+            $requete = "SELECT *
                         FROM users
                         WHERE mail='$mail'";
 
             $result = sqlFetch($requete);
-
-            $_SESSION['user'] = $result;
+            foreach ($result as $key => $value) {
+                $_SESSION[$key] = $value;
+            }
         }
     }
 } else

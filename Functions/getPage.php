@@ -1,4 +1,9 @@
 <?php
+
+CONST FETCH_MODE_DEFAULT = 0;
+CONST FETCH_MODE_MULTIPLE = 1;
+CONST FETCH_MODE_NO_ASSOC = 2;
+
 /*
  *@return string
  */
@@ -19,12 +24,19 @@ function getPage()
  */
 function sqlDebug(array $result)
 {
-    $return = gettype($result);
-    foreach ($result as $key => $rows) {
-        $return .= (' <br> [" ' . $key . '"]  => ');
-        $return .= ('(' . gettype($rows) . ') : ');
-        $return .= ('"' . $result[$key] . '"');
+    $return = '';
+    foreach ($result as $keys => $rows) {
 
+        if (is_array($rows)) {
+            echo 'Array['. $keys .'] : ';
+            sqlDebug($rows);
+            echo '<hr>';
+        }
+        else {
+            $return .= (' <br> [" ' . $keys . '"]  => ');
+            $return .= ('(' . gettype($rows) . ') : ');
+            $return .= ('"' . $result[$keys] . '"');
+        }
     }
     echo $return;
     return;
@@ -61,7 +73,7 @@ function sqlInsert($request)
  * @param bool $assoc optional
  * @return mixed
  */
-function sqlFetch($request, $assoc = true)
+function sqlFetch($request, $mode = FETCH_MODE_DEFAULT)
 {
     //Etablie la connection avec la base
     $connection = mysqli_connect("localhost", "root", "", "turtuledb");
@@ -70,10 +82,16 @@ function sqlFetch($request, $assoc = true)
     }
 
     try {
-        if ($assoc) {
-            $result = mysqli_fetch_assoc(mysqli_query($connection, $request));
-        } else {
-            $result = mysqli_query($connection, $request);
+        switch ($mode) {
+            case 0 :
+                $result = mysqli_fetch_assoc(mysqli_query($connection, $request));
+                break;
+            case 1 :
+                $result = mysqli_fetch_all(mysqli_query($connection, $request), 1);
+                break;
+            case 2 :
+                $result = mysqli_query($connection, $request);
+                break;
         }
     } catch (Exception $exception) {
         $result = false;
@@ -84,12 +102,12 @@ function sqlFetch($request, $assoc = true)
     return $result;
 }
 
-function loadArticle($file,array $data) {
+function loadTemplate($file, array $data) {
     $fullpath = './Includes/Templates/'.$file.'.php';
-    $article = file_get_contents($fullpath);
+    $template = file_get_contents($fullpath);
 
     foreach ($data as $key => $value) {
-        $article = str_replace('['.$key.']', $value, $article);
+        $template = str_replace('['.$key.']', $value, $template);
     }
-    return $article;
+    return $template;
 }

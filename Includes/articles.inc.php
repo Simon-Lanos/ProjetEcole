@@ -1,36 +1,51 @@
-<article>
-    <div class="art-contender">
-        <h1>Titre</h1>
-        <img src="./assets/img/art1.jpg" alt="Image de montagne" class="art-img">
-        <hr>
-        <p class="art-content">
-            Pellentesque mollis felis in est imperdiet, a viverra augue molestie. Fusce porta porttitor mollis.
-            Nulla pretium augue in ultrices semper. Nullam urna mi, maximus in justo quis, posuere elementum ligula.
-            Sed consequat felis in nisl consequat faucibus. Suspendisse id nunc blandit, ultrices metus sit amet, viverra ex. Vivamus et elementum augue.
-            Pellentesque quis eleifend purus. Nulla convallis justo vitae tincidunt scelerisque. Donec dictum vehicula scelerisque. Nullam pretium a lorem vitae suscipit.
-            Nam pulvinar turpis quis lorem blandit, ac tincidunt enim dapibus. Ut sagittis porta sagittis. Morbi id mauris auctor, varius nibh at, pharetra nulla.
-            Duis hendrerit pellentesque felis a interdum.
-        </p>
-        <button class="art-button">Yolo !</button>
-         <!--
-            <div class="inbl">
-                <span>
-                    Pellentesque mollis felis in est imperdiet, a viverra augue molestie. Fusce porta porttitor mollis.
-                    Nulla pretium augue in ultrices semper. Nullam urna mi, maximus in justo quis, posuere elementum ligula.
-                    Sed consequat felis in nisl consequat faucibus. Suspendisse id nunc blandit, ultrices metus sit amet, viverra ex. Vivamus et elementum augue.
-                    Pellentesque quis eleifend purus. Nulla convallis justo vitae tincidunt scelerisque. Donec dictum vehicula scelerisque. Nullam pretium a lorem vitae suscipit.
-                    Nam pulvinar turpis quis lorem blandit, ac tincidunt enim dapibus. Ut sagittis porta sagittis. Morbi id mauris auctor, varius nibh at, pharetra nulla.
-                    Duis hendrerit pellentesque felis a interdum.
-                </span>
-                <span>
-                    Pellentesque mollis felis in est imperdiet, a viverra augue molestie. Fusce porta porttitor mollis.
-                    Nulla pretium augue in ultrices semper. Nullam urna mi, maximus in justo quis, posuere elementum ligula.
-                    Sed consequat felis in nisl consequat faucibus. Suspendisse id nunc blandit, ultrices metus sit amet, viverra ex. Vivamus et elementum augue.
-                    Pellentesque quis eleifend purus. Nulla convallis justo vitae tincidunt scelerisque. Donec dictum vehicula scelerisque. Nullam pretium a lorem vitae suscipit.
-                    Nam pulvinar turpis quis lorem blandit, ac tincidunt enim dapibus. Ut sagittis porta sagittis. Morbi id mauris auctor, varius nibh at, pharetra nulla.
-                    Duis hendrerit pellentesque felis a interdum
-                </span>
-            </div>
-        -->
-    </div>
-</article>
+<?php
+if ($_SESSION['rolesUser'] <= 2) {
+    echo ('
+        <button>
+            ajouter un nouvelle article
+        </button>
+        <form action="#" method="post">
+            <fieldset>
+                <label>Titre : </label><input name="title" type="text">
+                <label>Contenu : </label><textarea name="content"></textarea>
+                <input type="submit">
+            </fieldset>
+        </form>'
+    );
+}
+
+if (isset($_POST['title']) && isset($_POST['content'])) {
+    if ($_POST['title'] !== '' || $_POST['content'] !== '') {
+
+        $title = $_POST['title'];
+        $content = $_POST['content'];
+        $idUser= $_SESSION['idUser'];
+        $usersRoles= $_SESSION['rolesUser'];
+
+        $request = "
+            INSERT INTO articles (title, content, idUser, usersRoles)
+                    VALUES ('$title', '$content', '$idUser', '$usersRoles')
+        ";
+
+        $succes = sqlInsert($request);
+
+        if ($succes === true) {
+            echo '<pre>l\'article à bien été ajouté</pre>';
+        }
+    }
+    else {
+        echo '<pre>tout les champs doivent être remplie</pre>';
+    }
+}
+
+/*
+ * @TODO boucle qui affiche les articles
+ */
+
+$request = "SELECT * FROM articles";
+
+$result = sqlFetch($request, FETCH_MODE_MULTIPLE);
+foreach ($result as $data) {
+    $article = loadTemplate('article', $data);
+    echo('<div>'.$article.'</div>');
+}
