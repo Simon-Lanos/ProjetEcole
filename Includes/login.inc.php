@@ -54,7 +54,7 @@ if (isset($_POST['formLogin'])) {
 
             $result = sqlFetch($requete);
             foreach ($result as $key => $value) {
-                $_SESSION[$key] = $value;
+                $_SESSION['user'][$key] = $value;
             }
         }
     }

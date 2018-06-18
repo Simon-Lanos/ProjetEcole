@@ -1,5 +1,5 @@
 <?php
-if ($_SESSION['rolesUser'] <= 2) {
+if (isset($_SESSION['user']) && $_SESSION['user']['rolesUser'] >= 2) {
     echo ('
         <button>
             ajouter un nouvelle article
