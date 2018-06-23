@@ -2,7 +2,7 @@
 session_start();
 include_once("./Functions/callPage.php");
 include_once("./Functions/getPage.php");
-include_once("./Entities/User.php");
+include_once("./Entities/db.php");
 
 if (isset($_GET['ajax'])) {
     header("Content-Type: text/plain");
