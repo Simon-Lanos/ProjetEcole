@@ -7,6 +7,7 @@ if (isset($_SESSION['user']) && $_SESSION['user']['rolesUser'] >= 2) {
         <form action="#" method="post">
             <fieldset>
                 <label>Titre : </label><input name="title" type="text">
+                <label>Sous titre : </label><input name="sub-title" type="text">
                 <label>Contenu : </label><textarea name="content"></textarea>
                 <input type="submit">
             </fieldset>
@@ -14,17 +15,18 @@ if (isset($_SESSION['user']) && $_SESSION['user']['rolesUser'] >= 2) {
     );
 }
 
-if (isset($_POST['title']) && isset($_POST['content'])) {
-    if ($_POST['title'] !== '' || $_POST['content'] !== '') {
+if (isset($_POST['title']) && isset($_POST['sub-title']) && isset($_POST['content'])) {
+    if ($_POST['title'] !== '' || $_POST['sub-title'] !== '' || $_POST['content'] !== '') {
 
-        $title = $_POST['title'];
-        $content = $_POST['content'];
-        $idUser= $_SESSION['idUser'];
-        $usersRoles= $_SESSION['rolesUser'];
+        $title = escChars($_POST['title']);
+        $subTitle = escChars($_POST['sub-title']);
+        $content = escChars($_POST['content']);
+        $idUser= escChars($_SESSION['idUser']);
+        $usersRoles= escChars($_SESSION['rolesUser']);
 
         $request = "
-            INSERT INTO articles (title, content, idUser, usersRoles)
-                    VALUES ('$title', '$content', '$idUser', '$usersRoles')
+            INSERT INTO articles (title, subTitle, content, idUser, usersRoles)
+                    VALUES ('$title', '$subTitle', '$content', '$idUser', '$usersRoles')
         ";
 
         $succes = sqlInsert($request);
@@ -38,14 +40,10 @@ if (isset($_POST['title']) && isset($_POST['content'])) {
     }
 }
 
-/*
- * @TODO boucle qui affiche les articles
- */
-
 $request = "SELECT * FROM articles";
 
 $result = sqlFetch($request, FETCH_MODE_MULTIPLE);
 foreach ($result as $data) {
-    $article = loadTemplate('article', $data);
+    $article = loadTemplate('article-minimal', $data);
     echo('<div>'.$article.'</div>');
 }

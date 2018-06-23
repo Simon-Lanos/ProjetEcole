@@ -60,7 +60,7 @@ function sqlInsert($request)
         $result = true;
     } catch (Exception $exception) {
         $result = false;
-        throw new $exception;
+        die(new $exception);
     }
 
     mysqli_close($connection);
@@ -110,4 +110,11 @@ function loadTemplate($file, array $data) {
         $template = str_replace('['.$key.']', $value, $template);
     }
     return $template;
+}
+
+function escChars($string) {
+    $return = str_replace("'", "\'", $string);
+    $return = str_replace('"', '\"', $return);
+
+    return $return;
 }
