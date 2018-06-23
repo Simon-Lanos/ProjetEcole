@@ -14,16 +14,17 @@ let bullets = [];
 
 let shoot = false;
 function Bullet() {
-    this.move = function () {
-        this.posY = this.posY + this.velocity;
-        context.fillStyle="red";
-        context.fillRect(this.posX, this.posY, this.width, this.height);
-    };
     this.posX = playerPosX + playerWidth/2;
     this.posY = playerPosY - playerHeight/2;
     this.velocity = 20;
     this.height = 20;
     this.width = 10;
+    this.isUsed = false;
+    this.move = function () {
+        this.posY = this.posY + this.velocity;
+        context.fillStyle="red";
+        context.fillRect(this.posX, this.posY, this.width, this.height);
+    };
 }
 
 function jeu() {
