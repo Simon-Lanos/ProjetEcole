@@ -7,6 +7,7 @@
         <li  class="nav-head"><a href="./index.php?page=articles">Articles</a></li>
         <li  class="nav-head"><a href="./index.php?page=exp">Exemple</a></li>
         <li  class="nav-head"><a href="./index.php?page=game">Game</a></li>
+        <li  class="nav-head"><a href="./index.php?page=cv">Curiculum Vitae</a></li>
     </ul>
     </div>
     <?php
