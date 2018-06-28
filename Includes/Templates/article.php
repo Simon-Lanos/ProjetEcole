@@ -1,9 +1,7 @@
 <article>
-    <div class="art-contender">
-        <h1>[title]</h1>
-        <img src="./assets/img/[img].jpg" alt="Image de montagne" class="art-img">
-        <hr>
-        <p id="art-content" class="art-content">
+    <h1 class="titre">[title]</h1>
+    <div class="wrapper">
+        <p class="content">
             [content]
         </p>
     </div>

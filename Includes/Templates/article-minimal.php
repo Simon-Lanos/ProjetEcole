@@ -1,18 +1,12 @@
-<article>
-    <div class="wrapper">
+<article class="row-article">
+    <div class="art-contender">
         <h1>[title]</h1>
         <h2>[subTitle]</h2>
-        <img src="./assets/img/[img].jpg" alt="Image de montagne" class="art-img">
+        <i class="fas fa-newspaper"></i>
         <hr>
         <p class="art-content">
             [content]
+            ... <a href="./index.php?page=single-article&article=[idArticle]">Lire plus</a>
         </p>
     </div>
 </article>
-
-<script>
-
-    let element = document.getElementsByClassName('art-content');
-    element[0].innerHTML = '<div>coucou je suis du JS !</div>';
-
-</script>

@@ -44,7 +44,7 @@ body
 
 div.nav-head-triangle
 {
-    width: 70%;
+    width: 100%;
     height: 50px;
     background: grey;
     overflow: hidden;
@@ -77,12 +77,12 @@ div.nav-head-triangle
 
 .art-contender
 {
-    width: 300px;
     background-color: azure;
     padding: 10px;
     overflow: hidden; /*clear fix*/
     border: 5px solid black;
     position: relative;
+    height: calc(50vh - 20px);
 }
 
 .art-button
@@ -119,7 +119,7 @@ ul
 
     div.nav-head-triangle
     {
-        width: 70%;
+        width: 100%;
         height: auto;
         background: grey;
         overflow: auto;

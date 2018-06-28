@@ -1,9 +1,6 @@
 <?php
 if (isset($_SESSION['user']) && $_SESSION['user']['rolesUser'] >= 2) {
     echo ('
-        <button>
-            ajouter un nouvelle article
-        </button>
         <form action="#" method="post">
             <fieldset>
                 <label>Titre : </label><input name="title" type="text">
@@ -40,10 +37,13 @@ if (isset($_POST['title']) && isset($_POST['sub-title']) && isset($_POST['conten
     }
 }
 
-$request = "SELECT * FROM articles";
+$request = "SELECT * FROM articles ORDER BY idArticle DESC";
 
 $result = sqlFetch($request, FETCH_MODE_MULTIPLE);
+$echo = '<div class="row">';
 foreach ($result as $data) {
+    $data['content'] = substr($data['content'], 0, 100);
     $article = loadTemplate('article-minimal', $data);
-    echo('<div>'.$article.'</div>');
+    $echo .= $article;
 }
+echo $echo.'</div>';

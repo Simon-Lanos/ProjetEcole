@@ -36,7 +36,7 @@ else {
 
     $result = sqlFetch($request);
 
-    $article = loadTemplate('article-minimal', $result);
+    $article = loadTemplate('article', $result);
 
     echo $article;
 }
